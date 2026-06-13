@@ -1,0 +1,50 @@
+@import url("header.css");
+@import url("footer.css");
+
+:root {
+    --cor-branca: #ffffff;
+    --cor-texto: #2f2940;
+    --cor-texto-suave: #665f78;
+
+    --cor-roxa: #7857c8;
+    --cor-roxa-escura: #5a3fa6;
+    --cor-azul: #5e8ee6;
+    --cor-azul-clara: #9cc9ff;
+
+    --gradiente-principal: linear-gradient(135deg,
+            #7857c8,
+            #5e8ee6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: var(--cor-texto);
+    background-color: var(--cor-branca);
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
