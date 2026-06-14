@@ -1,0 +1,270 @@
+IRIS (frontend)
+Informação sobre Relacionamentos, Integridade e Segurança
+
+O IRIS é uma aplicação web de caráter educativo e orientativo, desenvolvida para auxiliar na identificação de possíveis sinais de alerta em relacionamentos.
+
+A plataforma disponibiliza um questionário interativo, materiais informativos, orientações de segurança e acesso a canais oficiais de apoio.
+
+O IRIS não realiza diagnósticos e não substitui atendimento profissional, serviços públicos ou autoridades.
+
+Acesso ao sistema
+
+Site publicado:
+https://iris-relacionamentos.netlify.app/home.html
+
+Repositório:
+https://github.com/hendryl-figueiredomiranda-prog/IRIS
+
+Funcionalidades
+Página inicial com apresentação do projeto;
+Questionário interativo com uma pergunta por vez;
+Respostas nas opções “Nunca”, “Às vezes” e “Sempre”;
+Barra de progresso durante o preenchimento;
+Navegação entre perguntas;
+Resultado orientativo baseado nas respostas;
+Redirecionamento para uma página de alerta em situações críticas;
+Página com orientações e contatos oficiais;
+Materiais informativos e educativos;
+Página sobre o projeto;
+Botão de saída rápida;
+Login administrativo;
+Painel para cadastrar, listar, editar e excluir perguntas;
+Ativação e desativação de perguntas;
+Busca e filtragem no painel;
+Interface responsiva para computadores, tablets e celulares.
+Tecnologias utilizadas
+HTML5;
+CSS3;
+JavaScript;
+SessionStorage;
+Google Fonts;
+Git;
+GitHub;
+Netlify.
+
+O front-end foi desenvolvido sem o uso de frameworks, utilizando HTML, CSS e JavaScript.
+
+Estrutura do projeto
+IRIS/
+├── components/
+│   ├── header.html
+│   └── footer.html
+├── css/
+│   ├── global.css
+│   ├── header.css
+│   ├── footer.css
+│   ├── home.css
+│   ├── questionario.css
+│   ├── materiais.css
+│   ├── sobre.css
+│   ├── alerta-vermelho.css
+│   ├── login.css
+│   └── painel.css
+├── js/
+│   ├── header.js
+│   ├── footer.js
+│   ├── perguntas.js
+│   ├── questionario.js
+│   ├── login.js
+│   └── painel.js
+├── pages/
+│   ├── questionario.html
+│   ├── materiais.html
+│   ├── sobre.html
+│   ├── alerta-vermelho.html
+│   └── admin/
+│       ├── login.html
+│       └── painel.html
+├── home.html
+└── README.md
+Organização do front-end
+
+O projeto foi dividido em páginas, componentes, arquivos de estilo e scripts.
+
+Components
+
+A pasta components contém elementos reutilizados em diferentes páginas, como o cabeçalho e o rodapé.
+
+CSS
+
+A pasta css contém os arquivos responsáveis pela identidade visual, organização dos elementos e responsividade.
+
+JavaScript
+
+A pasta js contém os scripts responsáveis pelas interações da interface, funcionamento do questionário e gerenciamento das perguntas.
+
+Pages
+
+A pasta pages contém as páginas internas da aplicação, incluindo o questionário, materiais de apoio, página sobre o projeto, alerta e área administrativa.
+
+Funcionamento do questionário
+
+O questionário apresenta uma pergunta por vez e permite escolher entre três respostas:
+
+Nunca;
+Às vezes;
+Sempre.
+
+Durante o preenchimento, o sistema:
+
+identifica a pergunta atual;
+registra a resposta selecionada;
+atualiza a barra de progresso;
+permite avançar ou voltar;
+exibe o resultado ao final.
+
+As perguntas são carregadas pelo arquivo:
+
+js/perguntas.js
+
+Cada pergunta possui uma estrutura semelhante a:
+
+{
+    id: 1,
+    categoria: "PSICOLOGICA",
+    gravidade: "MEDIA",
+    texto: "Texto da pergunta",
+    ativa: true
+}
+Regra de alerta imediato
+
+Algumas perguntas são classificadas com gravidade crítica.
+
+Quando uma dessas perguntas recebe a resposta “Às vezes” ou “Sempre”, o sistema direciona a pessoa para uma página de alerta com orientações e canais oficiais de apoio.
+
+Exemplo da lógica utilizada:
+
+const perguntaCritica =
+    pergunta.gravidade === "CRITICA";
+
+const respostaDeAlerta =
+    respostaSelecionada === "SEMPRE" ||
+    respostaSelecionada === "AS_VEZES";
+
+if (perguntaCritica && respostaDeAlerta) {
+    window.location.href = "alerta-vermelho.html";
+}
+Página de alerta
+
+A página de alerta apresenta:
+
+orientações iniciais;
+contatos oficiais;
+meios de atendimento;
+serviços de apoio em Diamantina;
+botão de saída rápida;
+acesso a materiais informativos.
+
+A linguagem utilizada busca ser clara, cuidadosa e orientativa.
+
+Área administrativa
+
+A área administrativa permite gerenciar as perguntas exibidas no questionário.
+
+As principais operações são:
+
+cadastrar pergunta;
+listar perguntas;
+editar pergunta;
+excluir pergunta;
+ativar pergunta;
+desativar pergunta;
+buscar por texto;
+filtrar por situação.
+
+Cada pergunta possui:
+
+texto;
+tipo de violência;
+nível de gravidade;
+situação ativa ou inativa.
+Armazenamento durante a sessão
+
+O front-end utiliza SessionStorage para manter informações durante a navegação.
+
+São armazenados durante a sessão:
+
+perguntas;
+alterações realizadas no painel;
+respostas do questionário;
+estado do acesso administrativo.
+Identidade visual
+
+A interface utiliza uma identidade visual baseada em:
+
+tons de roxo e azul;
+fundos claros;
+cards com bordas arredondadas;
+sombras suaves;
+gradientes discretos;
+elementos com transparência;
+tipografia simples e legível.
+
+As fontes utilizadas são:
+
+Inter;
+Marcellus.
+Responsividade
+
+O sistema foi desenvolvido para funcionar em diferentes tamanhos de tela.
+
+Foram utilizados:
+
+media queries;
+grades flexíveis;
+larguras adaptáveis;
+reorganização de cards;
+botões responsivos;
+menus adaptados para dispositivos móveis.
+Usabilidade e acessibilidade
+
+Durante o desenvolvimento, foram considerados:
+
+linguagem clara;
+navegação simples;
+contraste entre texto e fundo;
+campos com identificação;
+mensagens de validação;
+bloqueio de avanço sem resposta;
+botão de saída rápida;
+textos orientativos;
+adaptação para dispositivos móveis.
+Como executar localmente
+
+Clone o repositório:
+
+git clone https://github.com/hendryl-figueiredomiranda-prog/IRIS.git
+
+Entre na pasta do projeto:
+
+cd IRIS
+
+Abra o arquivo:
+
+home.html
+
+Também é possível executar o projeto utilizando uma extensão como o Live Server.
+
+Publicação
+
+O front-end está publicado no Netlify e pode ser acessado pelo endereço:
+
+https://iris-relacionamentos.netlify.app/home.html
+
+Autores
+
+Projeto desenvolvido por estudantes do curso de Sistemas de Informação da Universidade Federal dos Vales do Jequitinhonha e Mucuri — UFVJM.
+
+Integrantes
+João Victor Silva Soares;
+João Pedro Brant Santos;
+Hendryl Figueiredo Miranda;
+Luís Cláudio Lucas Prado.
+Informações acadêmicas
+
+Curso: Sistemas de Informação
+Disciplina: Engenharia de Software I
+Docente: Prof.ª Kattiana Fernandes Constantino
+Instituição: Universidade Federal dos Vales do Jequitinhonha e Mucuri — UFVJM
+Campus: Diamantina — MG
+Ano: 2026
