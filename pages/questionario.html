@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Questionário orientativo do IRIS sobre comportamentos presentes nos relacionamentos.">
+
+    <title>IRIS | Questionário</title>
+
+    <!-- Fontes - Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/questionario.css">
+</head>
+
+<body>
+
+    <!-- Header carregado pelo header.js -->
+    <div id="header-container"></div>
+
+    <main class="questionario-principal">
+
+        <!-- =========================
+             APRESENTAÇÃO
+        ========================== -->
+
+        <section class="questionario-introducao" id="questionario-introducao">
+            <div class="conteudo-secao introducao-conteudo">
+
+                <div class="introducao-texto">
+
+                    <span class="pagina-etiqueta">
+                        Questionário orientativo
+                    </span>
+
+                    <h1 class="pagina-titulo">
+                        Reflita sobre seu relacionamento
+                    </h1>
+
+                    <p class="pagina-descricao">
+                        Você responderá a perguntas simples sobre situações
+                        que podem acontecer em um relacionamento.
+                    </p>
+
+                    <p class="pagina-descricao">
+                        Para cada pergunta, escolha a opção que mais se aproxima
+                        da sua experiência: “Sim”, “Às vezes” ou “Nunca”.
+                    </p>
+
+                    <div class="introducao-aviso">
+
+                        <strong>
+                            Antes de começar
+                        </strong>
+
+                        <p>
+                            O resultado possui caráter apenas orientativo e
+                            não representa diagnóstico psicológico, médico
+                            ou jurídico.
+                        </p>
+
+                        <p>
+                            Não é necessário informar seu nome ou realizar
+                            cadastro para responder.
+                        </p>
+
+                    </div>
+
+                    <button type="button" class="botao botao-principal" id="botao-iniciar-questionario">
+                        Iniciar questionário
+                    </button>
+
+                </div>
+
+                <aside class="introducao-cartao">
+
+                    <span class="introducao-cartao-logo">
+                        IRIS
+                    </span>
+
+                    <h2>
+                        Um espaço de reflexão e informação.
+                    </h2>
+
+                    <ul class="introducao-lista">
+                        <li>Respostas anônimas</li>
+                        <li>Perguntas rápidas</li>
+                        <li>Resultado orientativo</li>
+                        <li>Materiais e canais de apoio</li>
+                    </ul>
+
+                </aside>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             ÁREA DO QUESTIONÁRIO
+        ========================== -->
+
+        <section class="secao-questionario" id="secao-questionario" hidden>
+            <div class="conteudo-secao questionario-container">
+
+                <!-- Cabeçalho e progresso -->
+                <div class="questionario-cabecalho">
+
+                    <div class="questionario-progresso-informacao">
+
+                        <span class="questionario-etiqueta">
+                            Questionário IRIS
+                        </span>
+
+                        <p class="questionario-contador" id="questionario-contador" aria-live="polite">
+                            Pergunta 1 de 5
+                        </p>
+
+                    </div>
+
+                    <div class="barra-progresso" role="progressbar" aria-label="Progresso do questionário"
+                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" id="barra-progresso">
+                        <span class="barra-progresso-preenchimento" id="barra-progresso-preenchimento"
+                            style="width: 20%;"></span>
+                    </div>
+
+                </div>
+
+                <!-- Carrossel -->
+                <div class="questionario-carrossel" id="questionario-carrossel">
+
+                    <article class="pergunta-card" id="pergunta-card">
+
+                        <div class="pergunta-topo">
+
+                            <span class="pergunta-categoria" id="pergunta-categoria">
+                                Controle
+                            </span>
+
+                            <span class="pergunta-numero" id="pergunta-numero">
+                                01
+                            </span>
+
+                        </div>
+
+                        <h2 class="pergunta-texto" id="pergunta-texto">
+                            A pessoa com quem você se relaciona tenta controlar
+                            suas roupas, horários ou amizades?
+                        </h2>
+
+                        <p class="pergunta-orientacao">
+                            Escolha uma opção para continuar.
+                        </p>
+
+                        <fieldset class="respostas-container">
+                        
+                            <legend class="visualmente-oculto">
+                                Selecione uma resposta
+                            </legend>
+                        
+                            <label class="resposta-opcao">
+                        
+                                <input type="radio" name="resposta" value="NUNCA" data-pontuacao="0">
+                        
+                                <span class="resposta-conteudo">
+                        
+                                    <span class="resposta-titulo">
+                                        Nunca
+                                    </span>
+                        
+                                    <span class="resposta-descricao">
+                                        Isso não acontece no relacionamento.
+                                    </span>
+                        
+                                </span>
+                        
+                            </label>
+                        
+                            <label class="resposta-opcao">
+                        
+                                <input type="radio" name="resposta" value="AS_VEZES" data-pontuacao="1">
+                        
+                                <span class="resposta-conteudo">
+                        
+                                    <span class="resposta-titulo">
+                                        Às vezes
+                                    </span>
+                        
+                                    <span class="resposta-descricao">
+                                        Isso acontece em algumas situações.
+                                    </span>
+                        
+                                </span>
+                        
+                            </label>
+                        
+                            <label class="resposta-opcao">
+                        
+                                <input type="radio" name="resposta" value="SEMPRE" data-pontuacao="2">
+                        
+                                <span class="resposta-conteudo">
+                        
+                                    <span class="resposta-titulo">
+                                        Sempre
+                                    </span>
+                        
+                                    <span class="resposta-descricao">
+                                        Isso acontece com frequência.
+                                    </span>
+                        
+                                </span>
+                        
+                            </label>
+                        
+                        </fieldset>
+
+                        <p class="pergunta-mensagem" id="pergunta-mensagem" aria-live="polite"></p>
+
+                    </article>
+
+                </div>
+
+                <!-- Navegação -->
+                <div class="questionario-navegacao">
+
+                    <button type="button" class="botao-navegacao botao-voltar" id="botao-pergunta-anterior" disabled>
+                        Voltar
+                    </button>
+
+                    <button type="button" class="botao-navegacao botao-continuar" id="botao-proxima-pergunta" disabled>
+                        Continuar
+                    </button>
+
+                </div>
+
+                <p class="questionario-privacidade">
+                    Suas respostas serão utilizadas somente para gerar
+                    o resultado orientativo do questionário.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             PROCESSAMENTO
+        ========================== -->
+
+        <section class="secao-processamento" id="secao-processamento" hidden aria-live="polite">
+            <div class="processamento-cartao">
+
+                <span class="processamento-logo">
+                    IRIS
+                </span>
+
+                <h2>
+                    Analisando suas respostas
+                </h2>
+
+                <p>
+                    Estamos preparando uma orientação com base
+                    nas situações informadas.
+                </p>
+
+                <div class="processamento-indicador" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             RESULTADO
+        ========================== -->
+
+        <section class="secao-resultado" id="secao-resultado" hidden>
+            <div class="conteudo-secao resultado-container">
+
+                <article class="resultado-card resultado-amarelo" id="resultado-card">
+
+                    <span class="resultado-bandeira" id="resultado-bandeira">
+                        Bandeira amarela
+                    </span>
+
+                    <h1 class="resultado-titulo" id="resultado-titulo">
+                        Alguns sinais de alerta
+                    </h1>
+
+                    <p class="resultado-descricao" id="resultado-descricao">
+                        Algumas respostas indicam comportamentos que podem
+                        ser preocupantes. Observe essas situações e considere
+                        buscar orientação.
+                    </p>
+
+                    <p class="resultado-aviso">
+                        Este resultado é orientativo e não representa
+                        um diagnóstico.
+                    </p>
+
+                    <div class="resultado-acoes">
+
+                        <a href="materiais.html" class="botao botao-principal">
+                            Ver materiais de apoio
+                        </a>
+
+                        <button type="button" class="botao botao-secundario" id="botao-refazer-questionario">
+                            Refazer questionário
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <aside class="resultado-ajuda">
+
+                    <span class="resultado-ajuda-etiqueta">
+                        Precisa de ajuda?
+                    </span>
+
+                    <h2>
+                        Você não precisa enfrentar uma situação difícil sozinha.
+                    </h2>
+
+                    <p>
+                        Em caso de perigo imediato, procure um local seguro
+                        e acione a Polícia Militar pelo número 190.
+                    </p>
+
+                    <p>
+                        Para orientação e informações sobre serviços de apoio,
+                        entre em contato com o Ligue 180.
+                    </p>
+
+                    <div class="resultado-contatos">
+
+                        <a href="tel:190">
+                            <span>Emergência</span>
+                            <strong>190</strong>
+                        </a>
+
+                        <a href="tel:180">
+                            <span>Orientação</span>
+                            <strong>180</strong>
+                        </a>
+
+                    </div>
+
+                </aside>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             ERRO DE CARREGAMENTO
+        ========================== -->
+
+        <section class="secao-erro-questionario" id="secao-erro-questionario" hidden>
+            <div class="erro-questionario-cartao">
+
+                <h2>
+                    Não foi possível carregar o questionário
+                </h2>
+
+                <p>
+                    Ocorreu um problema ao buscar as perguntas.
+                    Tente novamente em alguns instantes.
+                </p>
+
+                <button type="button" class="botao botao-principal" id="botao-tentar-novamente">
+                    Tentar novamente
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer carregado pelo footer.js -->
+    <div id="footer-container"></div>
+
+    <!--
+        Template usado pelo JavaScript caso seja necessário
+        gerar opções ou estruturas dinamicamente.
+    -->
+    <template id="template-resposta-opcao">
+
+        <label class="resposta-opcao">
+
+            <input type="radio" name="resposta" value="">
+
+            <span class="resposta-conteudo">
+
+                <span class="resposta-titulo"></span>
+
+                <span class="resposta-descricao"></span>
+
+            </span>
+
+        </label>
+
+    </template>
+
+    <!-- Scripts -->
+    <script src="../js/header.js"></script>
+    <script src="../js/questionario.js"></script>
+    <script src="../js/footer.js"></script>
+
+</body>
+
+</html>

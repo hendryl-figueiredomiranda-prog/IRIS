@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: apoio-a-mulher
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/hera?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  expiration: ${JWT_EXPIRATION:900000}
+  key: ${JWT_KEY:aPz3vtOr9KeGw1MrwWbGV9W7qOBUD4HwmanVP96gZXZg4ekmBc0b3SKkJmKuQfZ9LspVqqccpKw8H0SmCHSmQON9PAoE6r8RSuuFwhsWzZQPr2cmAZC82wbdFOrZqeOr2w1LzTu5iLv3FHHdOJkB5OOngIvsOniEc4qgpdGqCCMb8WLO2CqZGB2eOBmDXcsHl41JE3tduHsANtdBpD2pgErB5Ed0rLHrcCTaF1LblseecRGtugdil0mp1bcR50iD9I43Df7kWPyUIQorjiQu7Sj1dfTfEf0SEM0e6tFH8jgjnsug5XtCyENPa3pGEz3iNkWkvvHL41WLNrGzGMGphmZu}

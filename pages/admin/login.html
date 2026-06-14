@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Área administrativa do projeto IRIS.">
+
+    <title>IRIS | Área administrativa</title>
+
+    <!-- Fontes - Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/login.css">
+</head>
+
+<body class="pagina-login">
+
+    <main class="login-principal">
+
+        <section class="login-container">
+
+            <!-- Apresentação -->
+            <div class="login-apresentacao">
+
+                <a href="../../home.html" class="login-logo" aria-label="Voltar para a página inicial do IRIS">
+                    IRIS
+                </a>
+
+                <span class="login-etiqueta">
+                    Área administrativa
+                </span>
+
+                <h1 class="login-titulo">
+                    Gerencie o conteúdo do questionário.
+                </h1>
+
+                <p class="login-descricao">
+                    Acesse o painel para cadastrar, editar, organizar
+                    ou desativar perguntas utilizadas na plataforma.
+                </p>
+
+                <div class="login-informacao">
+                    <span class="login-informacao-titulo">
+                        Acesso restrito
+                    </span>
+
+                    <p>
+                        Esta área é destinada somente aos administradores
+                        autorizados do projeto IRIS.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Formulário -->
+            <div class="login-cartao">
+
+                <div class="login-cartao-cabecalho">
+
+                    <span class="login-cartao-etiqueta">
+                        Bem-vindo
+                    </span>
+
+                    <h2>
+                        Entrar no painel
+                    </h2>
+
+                    <p>
+                        Informe suas credenciais administrativas.
+                    </p>
+
+                </div>
+
+                <form id="formulario-login" class="login-formulario" novalidate>
+
+                    <div class="campo-grupo">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input type="email" id="email" name="email" placeholder="admin@iris.com" autocomplete="email"
+                            required>
+
+                        <span class="campo-erro" id="erro-email" aria-live="polite"></span>
+
+                    </div>
+
+                    <div class="campo-grupo">
+
+                        <label for="senha">
+                            Senha
+                        </label>
+
+                        <div class="campo-senha">
+
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha"
+                                autocomplete="current-password" required>
+
+                            <button type="button" class="botao-mostrar-senha" id="botao-mostrar-senha"
+                                aria-label="Mostrar senha" aria-pressed="false">
+                                Mostrar
+                            </button>
+
+                        </div>
+
+                        <span class="campo-erro" id="erro-senha" aria-live="polite"></span>
+
+                    </div>
+
+                    <div class="login-mensagem" id="login-mensagem" aria-live="polite"></div>
+
+                    <button type="submit" class="login-botao" id="login-botao">
+                        Entrar
+                    </button>
+
+                </form>
+
+                <div class="login-voltar">
+
+                    <a href="../../home.html">
+                        Voltar para o site
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../../js/config.js"></script>
+    <script src="../../js/login.js"></script>
+
+</body>
+
+</html>
