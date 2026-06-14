@@ -1,46 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const perguntasMockadas = [
-        {
-            id: 1,
-            categoria: "Controle",
-            texto: "A pessoa com quem você se relaciona tenta controlar suas roupas, horários ou amizades?"
-        },
-        {
-            id: 2,
-            categoria: "Privacidade",
-            texto: "A pessoa exige acesso às suas senhas, mensagens ou redes sociais?"
-        },
-        {
-            id: 3,
-            categoria: "Isolamento",
-            texto: "Ela tenta impedir ou dificultar seu contato com amigos ou familiares?"
-        },
-        {
-            id: 4,
-            categoria: "Humilhação",
-            texto: "Ela faz comentários ofensivos, diminui suas conquistas ou humilha você?"
-        },
-        {
-            id: 5,
-            categoria: "Medo",
-            texto: "Você sente medo da reação dessa pessoa ao discordar ou dizer não?"
-        },
-        {
-            id: 6,
-            categoria: "Ameaças",
-            texto: "Essa pessoa já ameaçou você, seus familiares, seus animais ou seus bens?"
-        },
-        {
-            id: 7,
-            categoria: "Patrimônio",
-            texto: "Ela controla seu dinheiro, impede você de trabalhar ou retém seus documentos?"
-        },
-        {
-            id: 8,
-            categoria: "Consentimento",
-            texto: "Ela insiste em contato físico ou sexual mesmo quando você demonstra que não deseja?"
+    const CHAVE_PERGUNTAS = "irisPerguntas";
+
+    function carregarPerguntas() {
+        const perguntasSalvas = sessionStorage.getItem(CHAVE_PERGUNTAS);
+
+        if (perguntasSalvas) {
+            try {
+                return JSON.parse(perguntasSalvas)
+                    .filter((pergunta) => pergunta.ativa !== false);
+            } catch (erro) {
+                console.error("Erro ao carregar perguntas:", erro);
+            }
         }
-    ];
+
+        const perguntasIniciais = window.IRIS_PERGUNTAS_INICIAIS || [];
+
+        sessionStorage.setItem(
+            CHAVE_PERGUNTAS,
+            JSON.stringify(perguntasIniciais)
+        );
+
+        return perguntasIniciais.filter(
+            (pergunta) => pergunta.ativa !== false
+        );
+    }
+
+    const perguntasMockadas = carregarPerguntas();
 
     const introducao = document.getElementById("questionario-introducao");
     const secaoQuestionario = document.getElementById("secao-questionario");
@@ -216,27 +201,52 @@ document.addEventListener("DOMContentLoaded", () => {
             : "Continuar";
     }
 
-    function avancarPergunta() {
-        const respostaSalva = salvarRespostaSelecionada();
+function avancarPergunta() {
+    const respostaSelecionada = obterRespostaSelecionada();
 
-        if (!respostaSalva) {
-            perguntaMensagem.textContent =
-                "Selecione uma resposta para continuar.";
-
-            return;
-        }
-
-        const ultimaPergunta =
-            perguntaAtual === perguntas.length - 1;
-
-        if (ultimaPergunta) {
-            finalizarQuestionario();
-            return;
-        }
-
-        perguntaAtual += 1;
-        exibirPerguntaAtual();
+    if (!respostaSelecionada) {
+        perguntaMensagem.textContent =
+            "Selecione uma resposta para continuar.";
+        return;
     }
+
+    const pergunta = perguntas[perguntaAtual];
+
+    respostas[pergunta.id] = {
+        perguntaId: pergunta.id,
+        resposta: respostaSelecionada
+    };
+
+    const perguntaCritica =
+        pergunta.gravidade === "CRITICA";
+
+    const respostaDeAlerta =
+        respostaSelecionada === "SEMPRE" ||
+        respostaSelecionada === "AS_VEZES";
+
+    if (perguntaCritica && respostaDeAlerta) {
+        sessionStorage.setItem(
+            "irisRespostasQuestionario",
+            JSON.stringify(Object.values(respostas))
+        );
+
+        window.location.href = "alerta-vermelho.html";
+        return;
+    }
+
+    const ultimaPergunta =
+        perguntaAtual === perguntas.length - 1;
+
+    if (ultimaPergunta) {
+        finalizarQuestionario();
+        return;
+    }
+
+    perguntaAtual += 1;
+    exibirPerguntaAtual();
+}
+
+
 
     function voltarPergunta() {
         if (perguntaAtual === 0) {

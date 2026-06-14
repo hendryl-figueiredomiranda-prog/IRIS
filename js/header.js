@@ -32,6 +32,7 @@ async function carregarHeader() {
         headerContainer.innerHTML = await response.text();
 
         configurarLinksHeader(scriptHeader.src);
+        configurarAreaAdministrativa();
         iniciarEventosHeader();
     } catch (error) {
         console.error("Erro ao carregar o header:", error);
@@ -123,4 +124,34 @@ function iniciarEventosHeader() {
             window.location.replace("https://www.google.com");
         });
     }
+}
+
+function configurarAreaAdministrativa() {
+    const elementosAdministrativos = document.querySelectorAll(
+        "[data-admin-only]"
+    );
+
+    let administradorAutenticado = false;
+
+    try {
+        const sessaoSalva = sessionStorage.getItem("irisAdmin");
+
+        if (sessaoSalva) {
+            const sessaoAdmin = JSON.parse(sessaoSalva);
+
+            administradorAutenticado =
+                sessaoAdmin.autenticado === true;
+        }
+    } catch (error) {
+        console.error(
+            "Não foi possível verificar a sessão administrativa:",
+            error
+        );
+
+        sessionStorage.removeItem("irisAdmin");
+    }
+
+    elementosAdministrativos.forEach((elemento) => {
+        elemento.hidden = !administradorAutenticado;
+    });
 }

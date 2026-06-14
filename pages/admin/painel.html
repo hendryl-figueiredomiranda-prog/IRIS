@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Painel administrativo para gerenciamento das perguntas do projeto IRIS.">
+
+    <title>IRIS | Painel administrativo</title>
+
+    <!-- Fontes - Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/painel.css">
+</head>
+
+<body class="pagina-painel">
+
+    <!-- =========================
+         CABEÇALHO ADMINISTRATIVO
+    ========================== -->
+
+    <header class="painel-header">
+        <div class="painel-header-container">
+
+            <div class="painel-header-identidade">
+
+                <a href="../../home.html" class="painel-logo" aria-label="Ir para a página inicial do IRIS">
+                    IRIS
+                </a>
+
+                <span class="painel-header-divisor"></span>
+
+                <span class="painel-header-titulo">
+                    Painel administrativo
+                </span>
+
+            </div>
+
+            <div class="painel-header-acoes">
+
+                <a href="../../home.html" class="painel-link-site">
+                    Ver site
+                </a>
+
+                <button type="button" class="painel-botao-sair" id="botao-sair-admin">
+                    Sair
+                </button>
+
+            </div>
+
+        </div>
+    </header>
+
+    <main class="painel-principal">
+
+        <div class="painel-conteudo">
+
+            <!-- =========================
+                 APRESENTAÇÃO
+            ========================== -->
+
+            <section class="painel-apresentacao">
+
+                <div>
+
+                    <span class="painel-etiqueta">
+                        Administração
+                    </span>
+
+                    <h1>
+                        Gerenciamento de perguntas
+                    </h1>
+
+                    <p>
+                        Cadastre, edite, organize e remova as perguntas
+                        exibidas no questionário do IRIS.
+                    </p>
+
+                </div>
+
+                <button type="button" class="botao botao-principal" id="botao-nova-pergunta">
+                    Nova pergunta
+                </button>
+
+            </section>
+
+            <!-- =========================
+                 RESUMO
+            ========================== -->
+
+            <section class="painel-resumo" aria-label="Resumo das perguntas">
+
+                <article class="resumo-card">
+
+                    <span class="resumo-label">
+                        Total de perguntas
+                    </span>
+
+                    <strong class="resumo-valor" id="total-perguntas">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="resumo-card">
+
+                    <span class="resumo-label">
+                        Perguntas ativas
+                    </span>
+
+                    <strong class="resumo-valor" id="total-perguntas-ativas">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="resumo-card">
+
+                    <span class="resumo-label">
+                        Perguntas inativas
+                    </span>
+
+                    <strong class="resumo-valor" id="total-perguntas-inativas">
+                        0
+                    </strong>
+
+                </article>
+
+            </section>
+
+            <!-- =========================
+                 FILTROS
+            ========================== -->
+
+            <section class="painel-filtros">
+
+                <div class="campo-busca">
+
+                    <label for="busca-pergunta" class="visualmente-oculto">
+                        Buscar pergunta
+                    </label>
+
+                    <input type="search" id="busca-pergunta" placeholder="Buscar por texto ou categoria"
+                        autocomplete="off">
+
+                </div>
+
+                <div class="campo-filtro">
+
+                    <label for="filtro-status" class="visualmente-oculto">
+                        Filtrar por situação
+                    </label>
+
+                    <select id="filtro-status">
+                        <option value="TODAS">
+                            Todas
+                        </option>
+
+                        <option value="ATIVAS">
+                            Ativas
+                        </option>
+
+                        <option value="INATIVAS">
+                            Inativas
+                        </option>
+                    </select>
+
+                </div>
+
+            </section>
+
+            <!-- =========================
+                 LISTAGEM
+            ========================== -->
+
+            <section class="painel-listagem">
+
+                <div class="listagem-cabecalho">
+
+                    <div>
+                        <span class="painel-etiqueta">
+                            Questionário
+                        </span>
+
+                        <h2>
+                            Perguntas cadastradas
+                        </h2>
+                    </div>
+
+                    <span class="listagem-quantidade" id="listagem-quantidade">
+                        0 itens
+                    </span>
+
+                </div>
+
+                <!-- Perguntas inseridas pelo JavaScript -->
+                <div class="perguntas-lista" id="perguntas-lista"></div>
+
+                <!-- Estado sem perguntas -->
+                <div class="estado-vazio" id="estado-vazio" hidden>
+
+                    <span class="estado-vazio-simbolo">
+                        IRIS
+                    </span>
+
+                    <h3>
+                        Nenhuma pergunta cadastrada
+                    </h3>
+
+                    <p>
+                        Cadastre a primeira pergunta para começar
+                        a montar o questionário.
+                    </p>
+
+                    <button type="button" class="botao botao-principal" id="botao-primeira-pergunta">
+                        Cadastrar pergunta
+                    </button>
+
+                </div>
+
+                <!-- Estado sem resultados na busca -->
+                <div class="estado-vazio" id="estado-sem-resultados" hidden>
+
+                    <h3>
+                        Nenhuma pergunta encontrada
+                    </h3>
+
+                    <p>
+                        Tente utilizar outro termo ou alterar o filtro.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- =========================
+         MODAL DE CADASTRO E EDIÇÃO
+    ========================== -->
+
+    <div class="modal" id="modal-pergunta" hidden>
+
+        <div class="modal-fundo" data-fechar-modal></div>
+
+        <section class="modal-cartao" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+            <div class="modal-cabecalho">
+
+                <div>
+
+                    <span class="painel-etiqueta">
+                        Questionário
+                    </span>
+
+                    <h2 id="modal-titulo">
+                        Nova pergunta
+                    </h2>
+
+                </div>
+
+                <button type="button" class="modal-botao-fechar" id="botao-fechar-modal" aria-label="Fechar formulário">
+                    ×
+                </button>
+
+            </div>
+
+            <form class="formulario-pergunta" id="formulario-pergunta" novalidate>
+
+                <input type="hidden" id="pergunta-id" name="perguntaId">
+
+                <div class="campo-grupo">
+
+                    <label for="pergunta-texto">
+                        Pergunta
+                    </label>
+
+                    <textarea id="pergunta-texto" name="texto" rows="4" maxlength="300"
+                        placeholder="Digite a pergunta que será exibida no questionário" required></textarea>
+
+                    <div class="campo-informacoes">
+
+                        <span class="campo-erro" id="erro-pergunta-texto" aria-live="polite"></span>
+
+                        <span class="contador-caracteres" id="contador-caracteres">
+                            0/300
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="formulario-linha">
+
+                    <div class="campo-grupo">
+                    
+                        <label for="pergunta-categoria">
+                            Tipo de violência
+                        </label>
+                    
+                        <select id="pergunta-categoria" name="categoria" required>
+                            <option value="">
+                                Selecione o tipo de violência
+                            </option>
+                    
+                            <option value="FISICA">
+                                Violência física
+                            </option>
+                    
+                            <option value="PSICOLOGICA">
+                                Violência psicológica
+                            </option>
+                    
+                            <option value="SEXUAL">
+                                Violência sexual
+                            </option>
+                    
+                            <option value="PATRIMONIAL">
+                                Violência patrimonial
+                            </option>
+                    
+                            <option value="MORAL">
+                                Violência moral
+                            </option>
+                        </select>
+                    
+                        <span class="campo-erro" id="erro-pergunta-categoria" aria-live="polite"></span>
+                    
+                    </div>
+
+
+                    <div class="campo-grupo">
+
+                        <label for="pergunta-gravidade">
+                            Nível de gravidade
+                        </label>
+
+                        <select id="pergunta-gravidade" name="gravidade" required>
+                            <option value="">
+                                Selecione o nível
+                            </option>
+
+                            <option value="BAIXA">
+                                Baixa
+                            </option>
+
+                            <option value="MEDIA">
+                                Média
+                            </option>
+
+                            <option value="ALTA">
+                                Alta
+                            </option>
+
+                            <option value="CRITICA">
+                                Crítica
+                            </option>
+                        </select>
+
+                        <span class="campo-erro" id="erro-pergunta-gravidade" aria-live="polite"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="campo-status">
+
+                    <label class="status-opcao">
+
+                        <input type="checkbox" id="pergunta-ativa" name="ativa" checked>
+
+                        <span class="status-controle"></span>
+
+                        <span class="status-texto">
+
+                            <strong>
+                                Pergunta ativa
+                            </strong>
+
+                            <small>
+                                Perguntas inativas não aparecem no questionário.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+                <div class="formulario-mensagem" id="formulario-mensagem" aria-live="polite"></div>
+
+                <div class="modal-acoes">
+
+                    <button type="button" class="botao botao-secundario" id="botao-cancelar-pergunta">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="botao botao-principal" id="botao-salvar-pergunta">
+                        Salvar pergunta
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+    <!-- =========================
+         MODAL DE EXCLUSÃO
+    ========================== -->
+
+    <div class="modal" id="modal-exclusao" hidden>
+
+        <div class="modal-fundo" data-fechar-exclusao></div>
+
+        <section class="modal-cartao modal-confirmacao" role="alertdialog" aria-modal="true"
+            aria-labelledby="exclusao-titulo" aria-describedby="exclusao-descricao">
+
+            <span class="confirmacao-simbolo">
+                !
+            </span>
+
+            <h2 id="exclusao-titulo">
+                Excluir pergunta?
+            </h2>
+
+            <p id="exclusao-descricao">
+                Esta pergunta será removida da sessão atual.
+                Essa ação não poderá ser desfeita.
+            </p>
+
+            <div class="modal-acoes">
+
+                <button type="button" class="botao botao-secundario" id="botao-cancelar-exclusao">
+                    Cancelar
+                </button>
+
+                <button type="button" class="botao botao-excluir" id="botao-confirmar-exclusao">
+                    Excluir
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- =========================
+         MENSAGEM FLUTUANTE
+    ========================== -->
+
+    <div class="notificacao" id="notificacao" role="status" aria-live="polite" hidden>
+        <span id="notificacao-texto"></span>
+    </div>
+
+    <!-- =========================
+         TEMPLATE DA PERGUNTA
+    ========================== -->
+
+    <template id="template-pergunta">
+
+        <article class="pergunta-item" data-pergunta-id="">
+
+            <div class="pergunta-item-conteudo">
+
+                <div class="pergunta-item-topo">
+
+                    <div class="pergunta-item-etiquetas">
+
+                        <span class="pergunta-categoria"></span>
+
+                        <span class="pergunta-gravidade"></span>
+
+                        <span class="pergunta-status"></span>
+
+                    </div>
+
+                    <span class="pergunta-identificador"></span>
+
+                </div>
+
+                <h3 class="pergunta-item-texto"></h3>
+
+            </div>
+
+            <div class="pergunta-item-acoes">
+
+                <button type="button" class="acao-botao acao-status" data-acao="alternar-status">
+                    Desativar
+                </button>
+
+                <button type="button" class="acao-botao acao-editar" data-acao="editar">
+                    Editar
+                </button>
+
+                <button type="button" class="acao-botao acao-excluir" data-acao="excluir">
+                    Excluir
+                </button>
+
+            </div>
+
+        </article>
+
+    </template>
+
+    <!-- Scripts -->
+    <script src="../../js/perguntas.js"></script>
+    <script src="../../js/painel.js"></script>
+
+</body>
+
+</html>
